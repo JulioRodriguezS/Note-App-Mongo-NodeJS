@@ -1,0 +1,32 @@
+<div class="col-sm-3 mt-4 d-block">
+    <a href="/notes/add" class="btn btn-primary form-control"><i class="fas fa-external-link-alt"></i> Create new one!</a>
+</div>
+<div class="row">
+    {{#each notes}}
+    <div class="col-sm-3 mt-4">
+        <div class="card">
+            <h4 class="card-header d-flex justify-content-between align-center">
+                {{title}}
+                <a href="/notes/edit/{{_id}}" title="Edit"><i class="fas fa-edit"></i></a>
+            </h4>
+            <div class="card-body">
+                {{description}}
+            </div>
+            <div class="card-footer d-flex justify-content-between align-center">
+                {{createdDate}}
+                <form action="/notes/{{_id}}?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" title="Delete"><i class="fas fa-trash"></i></button>
+                </form>                
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto mt-4">
+        <div class="card-body">
+            <p class="lead">There are not notes yet...</p>
+            <a href="notes/add" class="btn btn-primary d-block mx-auto"><i class="fas fa-external-link-alt"></i> Go to create one!</a>
+        </div>
+    </div>
+    {{/each}}
+</div>
